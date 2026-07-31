@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "RpynrQpilcCtZ9esAc3B6TiF9QlKtIDLSSgqE4s2GGs=",
+  "Source": "StudentCourseRegistration.Api",
+  "BasePath": "_content/StudentCourseRegistration.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

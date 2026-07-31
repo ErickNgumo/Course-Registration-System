@@ -1,0 +1,8 @@
+.git
+.agents
+.codex
+**/bin
+**/obj
+**/*.user
+**/*.suo
+README.md
