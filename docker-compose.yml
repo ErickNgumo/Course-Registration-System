@@ -33,5 +33,17 @@ services:
       database:
         condition: service_healthy
 
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      # Baked into the bundle at build time; nginx proxies /api → api:8080.
+      VITE_API_BASE_URL: /api/v1
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
 volumes:
   sqlserver-data:

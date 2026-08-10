@@ -35,6 +35,8 @@ public sealed class ExceptionHandlingMiddleware
             AuthenticationException => (StatusCodes.Status401Unauthorized, "Authentication failed"),
             ForbiddenException => (StatusCodes.Status403Forbidden, "Access denied"),
             NotFoundException => (StatusCodes.Status404NotFound, "Resource not found"),
+            ConflictException => (StatusCodes.Status409Conflict, "Request conflicts with current state"),
+            UnprocessableEntityException => (StatusCodes.Status422UnprocessableEntity, "Request cannot be processed"),
             _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred")
         };
 

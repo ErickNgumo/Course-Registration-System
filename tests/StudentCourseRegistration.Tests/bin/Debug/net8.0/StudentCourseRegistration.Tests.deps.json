@@ -996,7 +996,10 @@
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
-          "StudentCourseRegistration.Api.dll": {}
+          "StudentCourseRegistration.Api.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

@@ -7,8 +7,12 @@ using StudentCourseRegistration.Api.Api.Middleware;
 using StudentCourseRegistration.Api.Api.Security;
 using StudentCourseRegistration.Api.Application.Abstractions.Persistence;
 using StudentCourseRegistration.Api.Application.Abstractions.Security;
+using StudentCourseRegistration.Api.Application.Admin;
+using StudentCourseRegistration.Api.Application.Audit;
 using StudentCourseRegistration.Api.Application.Auth;
 using StudentCourseRegistration.Api.Application.Courses;
+using StudentCourseRegistration.Api.Application.Enrollments;
+using StudentCourseRegistration.Api.Application.Security;
 using StudentCourseRegistration.Api.Domain.Administrators;
 using StudentCourseRegistration.Api.Domain.Students;
 using StudentCourseRegistration.Api.Infrastructure.Logging;
@@ -47,7 +51,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(AuthorizationPolicies.Administrator, policy =>
+        policy.RequireRole(ApplicationRoles.Administrator));
+    options.AddPolicy(AuthorizationPolicies.Student, policy =>
+        policy.RequireRole(ApplicationRoles.Student));
+});
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning(options =>
@@ -68,12 +78,34 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
+builder.Services.AddScoped<ISchedulingRepository, SchedulingRepository>();
+builder.Services.AddScoped<IPrerequisiteRepository, PrerequisiteRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.Configure<EnrollmentOptions>(builder.Configuration.GetSection(EnrollmentOptions.SectionName));
 builder.Services.AddSingleton<IPasswordHasher, AspNetPasswordHasher>();
+builder.Services.AddSingleton<IPasswordHasher<Administrator>, IdentityPasswordHasher>();
 builder.Services.AddSingleton<Microsoft.AspNetCore.Identity.IPasswordHasher<Administrator>, Microsoft.AspNetCore.Identity.PasswordHasher<Administrator>>();
 builder.Services.AddSingleton<Microsoft.AspNetCore.Identity.IPasswordHasher<Student>, Microsoft.AspNetCore.Identity.PasswordHasher<Student>>();
 builder.Services.AddSingleton<ITokenService, JwtTokenService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ICourseCatalogService, CourseCatalogService>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+
+// Administration services
+builder.Services.AddScoped<IAdministratorRepository, AdministratorRepository>();
+builder.Services.AddScoped<ICourseAdministrationRepository, CourseAdministrationRepository>();
+builder.Services.AddScoped<IEnrollmentAdministrationRepository, EnrollmentAdministrationRepository>();
+builder.Services.AddScoped<IStudentAdministrationRepository, StudentAdministrationRepository>();
+builder.Services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+builder.Services.AddScoped<IAuditRecorder, AuditRecorder>();
+builder.Services.AddScoped<IAuditService, AuditService>();
+builder.Services.AddScoped<IAdministrationService, AdministrationService>();
+builder.Services.AddScoped<IAdministratorAuthenticationService, AdministratorAuthenticationService>();
+builder.Services.AddScoped<ICourseAdministrationService, CourseAdministrationService>();
+builder.Services.AddScoped<IEnrollmentAdministrationService, EnrollmentAdministrationService>();
+builder.Services.AddScoped<IStudentAdministrationService, StudentAdministrationService>();
+builder.Services.AddScoped<IReportingService, ReportingService>();
 builder.Services.AddScoped<ICurrentUser, HttpCurrentUser>();
 builder.Services.AddScoped<DevelopmentDatabaseSeeder>();
 
