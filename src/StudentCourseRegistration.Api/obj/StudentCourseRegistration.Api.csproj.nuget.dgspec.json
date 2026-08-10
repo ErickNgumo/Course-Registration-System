@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/erick-ngumo/Documents/Student_course_registration_system/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj": {}
+    "/home/erick/class-projects/Course-Registration-System/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj": {}
   },
   "projects": {
-    "/home/erick-ngumo/Documents/Student_course_registration_system/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj": {
+    "/home/erick/class-projects/Course-Registration-System/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/erick-ngumo/Documents/Student_course_registration_system/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj",
+        "projectUniqueName": "/home/erick/class-projects/Course-Registration-System/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj",
         "projectName": "StudentCourseRegistration.Api",
-        "projectPath": "/home/erick-ngumo/Documents/Student_course_registration_system/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj",
-        "packagesPath": "/home/erick-ngumo/.nuget/packages/",
-        "outputPath": "/home/erick-ngumo/Documents/Student_course_registration_system/src/StudentCourseRegistration.Api/obj/",
+        "projectPath": "/home/erick/class-projects/Course-Registration-System/src/StudentCourseRegistration.Api/StudentCourseRegistration.Api.csproj",
+        "packagesPath": "/home/erick/.nuget/packages/",
+        "outputPath": "/home/erick/class-projects/Course-Registration-System/src/StudentCourseRegistration.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/erick-ngumo/.nuget/NuGet/NuGet.Config"
+          "/home/erick/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -87,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.129/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/erick/.dotnet/sdk/8.0.423/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

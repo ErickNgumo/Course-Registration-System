@@ -25,4 +25,22 @@ public sealed class CourseRepository : ICourseRepository
         _dbContext.Courses
             .AsNoTracking()
             .SingleOrDefaultAsync(course => course.Id == courseId, cancellationToken);
+
+    /// <inheritdoc />
+    public async Task<IReadOnlyDictionary<Guid, Course>> FindByIdsAsync(
+        IReadOnlyCollection<Guid> courseIds, CancellationToken cancellationToken)
+    {
+        var distinctIds = courseIds.Distinct().ToList();
+        if (distinctIds.Count == 0)
+        {
+            return new Dictionary<Guid, Course>();
+        }
+
+        var courses = await _dbContext.Courses
+            .AsNoTracking()
+            .Where(course => distinctIds.Contains(course.Id))
+            .ToListAsync(cancellationToken);
+
+        return courses.ToDictionary(course => course.Id);
+    }
 }
